@@ -1,0 +1,9 @@
+<plugin name='hibernate4' version='5.0.8.RELEASE' grailsVersion='2.5.0 &gt; *'>
+  <author>Graeme Rocher</author>
+  <authorEmail>graeme@grails.org</authorEmail>
+  <title>GORM for Hibernate 4</title>
+  <description>Provides integration between Grails and Hibernate 4 through GORM</description>
+  <documentation>http://grails.github.io/grails-doc/latest/guide/GORM.html</documentation>
+  <type>Hibernate4GrailsPlugin</type>
+  <resources />
+</plugin>

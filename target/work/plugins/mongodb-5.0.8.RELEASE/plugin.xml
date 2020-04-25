@@ -1,0 +1,9 @@
+<plugin name='mongodb' version='5.0.8.RELEASE' grailsVersion='2.5.0 &gt; *'>
+  <author>Graeme Rocher</author>
+  <authorEmail>graeme@grails.org</authorEmail>
+  <title>MongoDB GORM</title>
+  <description>A plugin that integrates the MongoDB document datastore into Grails, providing a GORM API onto it</description>
+  <documentation>http://grails.github.io/grails-data-mapping/latest/mongodb/</documentation>
+  <type>MongodbGrailsPlugin</type>
+  <resources />
+</plugin>
