@@ -1,6 +1,8 @@
 package am.neovision
 
+import grails.converters.JSON
 import grails.transaction.Transactional
+import groovy.json.JsonBuilder
 import groovy.json.JsonSlurper
 import org.codehaus.groovy.grails.web.json.JSONArray
 import org.codehaus.groovy.grails.web.json.JSONObject
@@ -28,14 +30,12 @@ class FileService {
     }
 
     def saveInMongo(def domObj){
-//        JSONObject a = new JSONObject()
-//        a.put("domainName", domObj.class.getSimpleName())
-//        a.put("dataJsonValues", domObj.properties)
         ObjectStorage objectStorage = new ObjectStorage()
         objectStorage.setDomainName(domObj.class.getSimpleName())
-        objectStorage.setDataJsonValues(domObj.properties.toString())
-
-//        objectStorage.save()
+        def domainJson =  domObj as JSON
+        domainJson.setExcludes(domObj.class, ["class","id"])
+        objectStorage.setDataJsonValues(domainJson.toString())
+        objectStorage.save()
     }
 
     def getAllFromMongo(){

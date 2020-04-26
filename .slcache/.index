@@ -5103,3 +5103,7 @@ n:2567:script1587861853893404967897$_run_closure2$_closure7
 n:2567:script1587861853893404967897$_run_closure2$_closure8
 n:3046:script1587861853893404967897$_run_closure3
 n:7038:groovy/json/JsonSlurper
+n:5084:groovy/json/JsonBuilder
+n:1199:org/codehaus/groovy/grails/web/converters/configuration/ConverterConfiguration
+n:2079:org/codehaus/groovy/grails/web/converters/Converter$CircularReferenceBehaviour
+n:6054:org/codehaus/groovy/grails/web/json/JSONWriter
