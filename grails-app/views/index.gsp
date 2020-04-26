@@ -17,7 +17,7 @@
 %{--		<button>Import/Upload Json file and execute it in Mysql database</button>--}%
 %{--	</g:link>--}%
 
-	<g:form controller="file" action="uploadFile" enctype="multipart/form-data">
+	<g:form controller="file" action="uploadJsonFileToMySQL" enctype="multipart/form-data">
 		<input name="jsonfile" type="file" />
 		<button type="submit" class="custom-button submit">Import to mysql</button>
 	</g:form>
