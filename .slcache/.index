@@ -5082,3 +5082,5 @@ n:5797:com/google/gson/JsonPrimitive
 n:939:com/google/gson/JsonNull
 n:250:org/apache/tools/ant/RuntimeConfigurable$1
 n:1258:org/apache/tools/ant/IntrospectionHelper$1
+n:1117:jline/console/history/MemoryHistory$EntryImpl
+n:264:jline/console/history/History$Entry

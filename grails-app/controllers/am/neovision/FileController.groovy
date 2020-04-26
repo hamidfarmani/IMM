@@ -7,6 +7,7 @@ import org.codehaus.groovy.grails.web.json.JSONObject
 class FileController {
 
     def fileService
+    def mockService
 
     def index() { }
 
@@ -25,8 +26,7 @@ class FileController {
     }
 
     def saveToMongo(){
-        ObjectStorage objectStorage = new ObjectStorage()
-        fileService.saveInMongo(objectStorage)
+        mockService.fillTempObject()
         render view:'../index'
     }
 
