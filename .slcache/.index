@@ -5107,3 +5107,5 @@ n:5084:groovy/json/JsonBuilder
 n:1199:org/codehaus/groovy/grails/web/converters/configuration/ConverterConfiguration
 n:2079:org/codehaus/groovy/grails/web/converters/Converter$CircularReferenceBehaviour
 n:6054:org/codehaus/groovy/grails/web/json/JSONWriter
+n:9236:org/springframework/http/HttpStatus
+n:2379:org/springframework/http/HttpStatus$Series

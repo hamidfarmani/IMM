@@ -1,13 +1,20 @@
 package am.neovision
 
+import org.springframework.http.HttpStatus
+
 class FileController {
 
     def fileService
     def mockService
 
     def uploadJsonFileToMySQL(){
+        println params
         def input = request.getFile("jsonfile").inputStream.text
-        fileService.saveInMySQL(input)
+        if(input != "") {
+            fileService.saveInMySQL(input)
+        }else{
+            flash.message = message(code: "file.empty", status: HttpStatus.BAD_REQUEST)
+        }
         render view: '../index'
     }
 
