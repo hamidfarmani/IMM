@@ -11,8 +11,7 @@ class FileController {
     def uploadJsonFileToMySQL(){
         def input = request.getFile("jsonfile").inputStream.text
         if(input != "") {
-            JSONObject inputJsonObject = new JSONObject(input)
-            fileService.loopThroughJson(inputJsonObject)
+            fileService.saveInMySQL(inputJsonObject)
         }else{
             flash.message = message(code: "file.empty", status: HttpStatus.BAD_REQUEST)
         }

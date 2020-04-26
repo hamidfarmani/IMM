@@ -12,25 +12,21 @@ class FileService {
     def grailsApplication
 
 
-    public void loopThroughJson(Object input) throws JSONException {
-
+    def loopThroughJson(Object input) throws JSONException {
         if (input instanceof JSONObject) {
-
             Iterator<?> keys = ((JSONObject) input).keys();
-
             while (keys.hasNext()) {
-
                 String key = (String) keys.next();
-
                 if (!(((JSONObject) input).get(key) instanceof JSONArray)){
                     if (((JSONObject) input).get(key) instanceof JSONObject) {
                         loopThroughJson(((JSONObject) input).get(key));
                     } else {
                         System.out.println(key + "=" + ((JSONObject) input).get(key));
                     }
-            }else {
-                loopThroughJson(new JSONArray(((JSONObject) input).get(key).toString()));
-            }
+                } else {
+                    println 'key: ' +key
+                    loopThroughJson(new JSONArray(((JSONObject) input).get(key).toString()));
+                }
             }
         }
 
@@ -46,32 +42,30 @@ class FileService {
 
     def saveInMySQL(def input){
         JSONObject inputJsonObject = new JSONObject(input)
+        String className = inputJsonObject.keys().getAt(0)
+        Class inputDomainClass = grailsApplication.domainClasses.find { it.clazz.simpleName == className }.clazz
+        String packageName = inputDomainClass.getPackage().getName() + '.'
+        def columnNames = grailsApplication.getDomainClass(packageName+className).persistentProperties.collect { it.name }
 
+        inputJsonObject.get(className).each { row ->
 
-//        String className = inputJsonObject.keys().getAt(0)
-//        Class inputDomainClass = grailsApplication.domainClasses.find { it.clazz.simpleName == className }.clazz
-//        String packageName = inputDomainClass.getPackage().getName() + '.'
-//        def columnNames = grailsApplication.getDomainClass(packageName+className).persistentProperties.collect { it.name }
-//
-//        inputJsonObject.get(className).each { row ->
-//
-//            def domainInstance = inputDomainClass.newInstance()
-//            columnNames.each{ col ->
-//                def a = row.get(col)
-//                if(a.class==null){
-//
-//                    def b = a as JSON
-//                    println col + ' ' +  b
-//                }
-//                try{
-//                    domainInstance."$col" = row.get(col)
-//                }catch(Exception e){
-//                    println e
-//                }
-//            }
-//            println domainInstance.properties
-//            domainInstance.save()
-//        }
+            def domainInstance = inputDomainClass.newInstance()
+            columnNames.each{ col ->
+                def a = row.get(col)
+                if(a.class==null){
+
+                    def b = a as JSON
+                    println col + ' ' +  b
+                }
+                try{
+                    domainInstance."$col" = row.get(col)
+                }catch(Exception e){
+                    println e
+                }
+            }
+            println domainInstance.properties
+            domainInstance.save()
+        }
     }
 
     def saveInMongo(def domObj){
