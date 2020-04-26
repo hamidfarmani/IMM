@@ -6,6 +6,10 @@ class ObjectStorage {
     String domainName
     String dataJsonValues
 
+    static mapping = {
+        version false
+    }
+
     static constraints = {
     }
 }

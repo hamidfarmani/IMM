@@ -1,5 +1,6 @@
 package am.neovision
 
+import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.http.HttpStatus
 
 class FileController {
@@ -8,10 +9,10 @@ class FileController {
     def mockService
 
     def uploadJsonFileToMySQL(){
-        println params
         def input = request.getFile("jsonfile").inputStream.text
         if(input != "") {
-            fileService.saveInMySQL(input)
+            JSONObject inputJsonObject = new JSONObject(input)
+            fileService.loopThroughJson(inputJsonObject)
         }else{
             flash.message = message(code: "file.empty", status: HttpStatus.BAD_REQUEST)
         }

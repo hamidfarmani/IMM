@@ -5,6 +5,15 @@ You can import your json files dynamically into MySQL database
 using dynamic domain calls. You can also get all properties
 of MongoDB with downloading a json file.
 
+Configuration
+---
+Artifact | Version |
+--- | --- | 
+Grails | 2.5.6 |
+MongoDB | 5.0.8.RELEASE |
+MySQL | 5.1.29 |
+Hibernate | 4:5.0.8.RELEASE |
+
 
 Main functionalities
 --------------------
