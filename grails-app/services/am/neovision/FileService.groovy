@@ -51,12 +51,6 @@ class FileService {
 
             def domainInstance = inputDomainClass.newInstance()
             columnNames.each{ col ->
-                def a = row.get(col)
-                if(a.class==null){
-
-                    def b = a as JSON
-                    println col + ' ' +  b
-                }
                 try{
                     domainInstance."$col" = row.get(col)
                 }catch(Exception e){
