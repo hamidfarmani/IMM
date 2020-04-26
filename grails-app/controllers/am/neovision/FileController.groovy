@@ -15,13 +15,19 @@ class FileController {
     def uploadFile(){
         def input = request.getFile("jsonfile").inputStream.text
         fileService.saveInMySQL(input)
-        render view: 'importjson'
+        render view: '../index'
     }
 
     def uploadJsonFile(){
         def input = request.getFile("mongojsonfile").inputStream.text
         fileService.saveInMongo(input)
-        render view: 'importjson'
+        render view: '../index'
+    }
+
+    def saveToMongo(){
+        ObjectStorage objectStorage = new ObjectStorage()
+        fileService.saveInMongo(objectStorage)
+        render view:'../index'
     }
 
     def getItemsFromMongo(){

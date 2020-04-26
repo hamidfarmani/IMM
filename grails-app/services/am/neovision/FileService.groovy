@@ -29,12 +29,12 @@ class FileService {
         }
     }
 
-    def saveInMongo(def input){
-        JSONObject a = new JSONObject(input)
-        def d = a.keys().getAt(0)
-        ObjectStorage os = new ObjectStorage()
-        os.setDomainName(d)
-        os.setDataJsonValues(a.get(d).toString())
+    def saveInMongo(ObjectStorage os){
+//        JSONObject a = new JSONObject(input)
+//        def d = a.keys().getAt(0)
+//        ObjectStorage os = new ObjectStorage()
+//        os.setDomainName(d)
+//        os.setDataJsonValues(a.get(d).toString())
         os.save()
     }
 

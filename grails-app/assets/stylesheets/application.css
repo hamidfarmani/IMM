@@ -7,7 +7,938 @@
 * You're free to add application-wide styles to this file and they'll appear at the top of the
 * compiled file, but it's generally better to create a new file per style scope.
 *
+*= require bootstrap
+*= require grails
 *= require main
 *= require mobile
 *= require_self
+*= require main
+*= require mobile
+*= require fontawesome-free-5.12.1-web/css/all.css
+*= require_self
 */
+
+
+/*===========================
+        HTML AND BODY
+=============================*/
+html, body{
+    height: 100%;
+}
+
+body{
+    color: #042F58;
+}
+
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Raleway", sans-serif;
+}
+
+p{
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+section{
+    background: #fff;
+    overflow: hidden;
+}
+
+
+/*===========================
+        PRELOADER
+=============================*/
+#preloader{
+    background-color: #f1f2f3;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
+
+#status{
+    background-image: url("../images/preloader/loader.gif");
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
+}
+
+/*===========================
+        Messages
+=============================*/
+.message_error{
+    color: red;
+    font-family: Raleway;
+    font-size: small;
+}
+
+/*===========================
+        HOME
+=============================*/
+#home{
+    background: none;
+    height: 100%;
+}
+#home-bg-video{
+    position: fixed;
+    top:50%;
+    left:50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    background: url("../video/poster.jpg") no-repeat;
+    background-size: cover;
+}
+
+#home-overlay{
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: -1;
+}
+
+#home-content{
+    margin-top: 230px;
+    width: 100%;
+    height: 100%;
+    display: table;
+
+}
+
+#home-content-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#home-heading h1{
+    color: #68B6FF;
+    font-size: 65px;
+    font-weight: 100;
+    text-transform: uppercase;
+    margin: 0;
+    display: inline-block;
+}
+
+#home-heading h1 span{
+    color: #ADCDEA;
+    font-weight: 500;
+}
+
+#home-text p{
+    color: #042F58;
+    font-size: 17px;
+    font-weight: 100;
+    margin: 8px 0 30px 0;
+}
+
+/*===========================
+        BUTTONS
+=============================*/
+.btn-general{
+    font-family: Raleway, sans-serif;
+    border-radius: 28px;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin: 0 6px;
+    padding: 12px 46px 12px 46px;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+
+.btn-home{
+    color: #0b2e13;
+    border: 1px solid #0b2e13;
+}
+.btn-home:hover, .btn-home:focus{
+    color: #135591;
+    background-color: #68B6FF;
+    border: 1px solid #135591;
+}
+
+.btn-blue{
+    color: #fff;
+    border: 1px solid #3798F2;
+    background-color: #3798F2;
+}
+
+.btn-blue:hover,
+.btn-blue:focus{
+    color: #fff;
+    border: 1px solid #042F58;
+    background-color: #042F58;
+}
+
+.btn-back-to-top{
+    position: fixed;
+    bottom: 20px;
+    right:20px;
+    padding: 3px 15px;
+    border-radius: 4px;
+    font-size: 22px;
+    /*display: none;*/
+}
+
+/*===========================
+        ARROW DOWN
+=============================*/
+#arrow-down{
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    color: #0b2e13;
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    margin-left: -16px;
+    z-index: 1;
+}
+
+#arrow-down:hover, #arrow-down:focus{
+    color: #68B6FF;
+}
+
+/*===========================
+        CONTENT BORDER
+=============================*/
+.content-box-lg{
+    padding: 120px 0;
+}
+
+.content-box-md{
+    padding: 100px 0;
+}
+
+/*===========================
+        ABOUT
+=============================*/
+.vertical-heading h5{
+    color: #68B6FF;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    word-spacing: 9px;
+    display: inline-block;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    position: relative;
+    top: 60px;
+    left: -63px;
+
+}
+
+
+.vertical-heading h2{
+    margin:0 0 0 35px;
+    font-size: 42px;
+    font-weight: 100;
+    line-height: 45px;
+}
+
+#about p{
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#about-right p:first-child{
+    margin-bottom: 30px;
+}
+
+#about-bottom{
+    margin-top: 60px;
+}
+
+#about-bottom img{
+    margin: 0 auto;
+}
+
+
+#about-02{
+    background-color: rgba(193, 226, 255, 0.13)
+}
+
+.about-item{
+    background-color: #fff;
+    padding: 80px 30px;
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.1);
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+
+.about-item i{
+    font-size: 42px;
+    margin: 0;
+}
+
+.about-item h3{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.about-item hr{
+    width: 50px;
+    height: 3px;
+    background-color: #042F58;
+    margin: 0 auto;
+    border: none;
+
+}
+
+.about-item p{
+    margin-top: 20px;
+}
+
+.about-item:hover{
+    background-color: #68B6FF;
+}
+
+.about-item:hover h3,
+.about-item:hover p,
+.about-item:hover i{
+    color: #fff;
+}
+
+.about-item:hover hr{
+    background-color: #fff;
+}
+
+.about-item:hover i{
+    transform: translateY(-20px);
+}
+
+.about-item,
+.about-item i,
+.about-item hr{
+    -webkit-transition: all 400ms ease-in-out;
+    transition: all 400ms ease-in-out;
+}
+
+
+/*===========================
+        HEADER
+=============================*/
+.navbar{
+    padding: 35px 0 20px 0;
+    -webkit-transition: all 300ms linear;
+    transition: all 300ms linear;
+}
+
+.site-nav-wrapper{
+    padding: 0 85px;
+}
+
+.navbar-brand{
+    padding: 13px 15px;
+}
+
+ul.navbar-nav > li > a{
+    font-family: Raleway, sans-serif;
+    color: #000000;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+ul.navbar-nav > li > a:hover,
+ul.navbar-nav > li > a:focus{
+    background: none;
+    color: #042F58;
+}
+
+.black-nav-top{
+    background: #212226;
+    padding: 5px 0;
+    -webkit-box-shadow: 0 8px 6px -9px #999;
+    box-shadow: 0 8px 6px -9px #999;
+    z-index: 2;
+}
+
+.black-nav-top ul.navbar-nav >li >a{
+    color: #fff;
+}
+.black-nav-top ul.navbar-nav > li > a:hover,
+.black-nav-top ul.navbar-nav > li > a:focus{
+    color: #042F58;
+}
+
+.black-nav-top ul.navbar-nav >li.active >a{
+    color: #1e7e34;
+    font-weight: 500;
+}
+
+
+ul li{
+    display: inline-block;
+    position: relative;
+    line-height: 21px;
+    text-align: right;
+}
+ul li a{
+    display: block;
+    text-decoration: none;
+}
+ul li a:hover{
+    color: #fff;
+    background: white;
+}
+
+ul li ul.dropdown{
+    background: #000000;
+    color: #fff;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+}
+
+ul li:hover ul.dropdown{
+    display: block; /* Display the dropdown */
+}
+ul li ul.dropdown li{
+    display: block;
+}
+
+a > i {
+    color: white;
+}
+
+
+
+/*===========================
+        FOOTER
+=============================*/
+footer{
+    background-color: #212226;
+    padding: 30px;
+}
+
+footer p{
+    color: #fff;
+    line-height: 20px;
+}
+
+footer p span{
+    color: #ADCDEA;
+}
+
+
+/*===========================
+        Pages
+=============================*/
+.show-content{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.actions{
+    background-color: #efefef;
+    overflow: hidden;
+    padding: 0.3em;
+    padding-left: 50px;
+    -moz-box-shadow: 0 0 3px 1px #aaaaaa;
+    -webkit-box-shadow: 0 0 3px 1px #aaaaaa;
+    box-shadow: 0 0 3px 1px #aaaaaa;
+    margin: 0.1em 0 0 0;
+    border: none;
+}
+
+.actions a{
+    text-decoration: none;
+}
+
+.center-wrapper{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-20%,-50%);
+}
+
+/*===========================
+        TABLE
+=============================*/
+.content-table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+.content-table thead tr{
+    background-color: #40798C;
+    color: #FFFFFF;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td{
+    padding: 12px 15px;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even){
+    background-color: #FFFFFF;
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 2px solid #40798C;
+}
+
+/*===========================
+        Button
+=============================*/
+.custom-button{
+    border: 1px solid #6a7385;
+    background: none;
+    background-color: #8EA8C3;
+    color: #161B33;
+    padding: 5px 10px;
+    font-size: 17px;
+    font-family: "Raleway";
+    cursor: pointer;
+    margin: 10px;
+    transition: .5s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+
+.custom-button:hover{
+    border: 1px solid #042F58;
+    color: #FFFFFF;
+    transition: .5s;
+}
+
+.primary:hover{
+    background-color: #1E3740;
+}
+
+.submit:hover{
+    background-color: #0B7E4D;
+}
+
+.edit:hover{
+    background-color: #BA992E;
+}
+
+.delete:hover{
+    background-color: #AE314B;
+}
+
+.cancel:hover{
+    background-color: #585B63;
+}
+
+
+/*===========================
+        Inputs
+=============================*/
+.inputWithIcon input ,
+.inputWithIcon textarea{
+    padding-left: 40px;
+}
+
+.inputWithIcon{
+    position: relative;
+}
+
+.inputWithIcon i{
+    position: absolute;
+    left: 0;
+    top:16px;
+    padding:9px 16px;
+    color: #aaa;
+}
+
+.inputWithIcon input:focus + i,
+.inputWithIcon textarea:focus + i{
+    color: dodgerblue;
+}
+
+
+.custom-input{
+    width: 100%;
+    border: 2px solid #aaa;
+    border-radius: 6px;
+    margin: 8px 0;
+    padding: 8px;
+    outline: none;
+    box-sizing: border-box;
+    transition: .3s;
+
+}
+
+.custom-input:focus{
+    box-shadow: 0 0 8px 0 dodgerblue;
+    border: 2px solid dodgerblue;
+}
+
+.custom-input:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+/*===========================
+        divider
+=============================*/
+.wrapper-whole{
+    width: 80%;
+    height: 70%;
+    top: 25%;
+    left:130px;
+    position: absolute;
+    color: #fff;
+}
+
+.wrapper-left{
+    width: 50%;
+    float: left;
+}
+
+.wrapper-right{
+    width: 50%;
+    float: right;
+}
+
+/*===========================
+        amortization
+=============================*/
+.amortizationGrid{
+    width: 100%;
+    background: white;
+    border: 1px solid #cfcfd4;
+    display: flex;
+    flex-flow: row wrap;
+
+}
+
+.lefGrid{
+    padding: 10px;
+    background: #e6e6e6;
+    width: 50%;
+    flex-basis: auto;
+    display: inline-block;
+}
+
+.rightGrid{
+    background: white;
+    width: 50%;
+    flex-basis: auto;
+    display: inline-block;
+    text-align: center;
+}
+
+.amortizationInput{
+    margin-bottom: 20px;
+    font-family: "Acumin Pro Bold";
+    border: 1px solid #a7a8af;
+    padding: .5rem .75rem;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+}
+
+.amortizationInput:focus{
+    border-bottom: 2px solid blue;
+}
+
+.amortizationButton{
+    margin-top: 15px;
+    width: 100%;
+    background-color: #3139f2;
+    color: white;
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 2;
+    border-radius: 0%;
+}
+.amortizationButton:hover{
+    background-color: black;
+    color: white;
+}
+
+.linktorate{
+    font-size: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border: 4px solid orange;
+}
+
+.linktorate:hover{
+    background-color: orange;
+}
+
+.input-icons i {
+    position: absolute;
+}
+
+.input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.icon {
+    padding: 10px;
+    min-width: 40px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+
+}
+
+#monthlyPayment{
+    font-family: "Acumin Pro Bold";
+    font-size: 4rem;
+    color: black;
+    line-height: 1.1;
+}
+
+.amotizationTitle{
+    font-family: "Acumin Pro Bold";
+    font-size: 4rem;
+    line-height: 1.1;
+    color: black;
+
+}
+
+.calculatorAcumin{
+    font-family: "Acumin Pro Bold";
+    color: black;
+}
+
+.calculatorCalibre {
+    font-family: "Calibre Regular";
+    font-size: 1.125em;
+    color: black;
+    line-height: 1.5;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.orderedList{
+    counter-reset: step-counter;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.calculatorAmortizationLink{
+    color: #3139f2;
+    cursor: pointer;
+}
+
+#amortizationDiv{
+    padding: 10px;
+    color: black;
+    display: none;
+    margin-top: 20px;
+    border: 1px solid #cfcfd4;
+    background-color: white;
+}
+
+.calculatorTotal{
+    padding-right: 150px;
+}
+
+.calculatorTotalNum{
+    padding-left: 150px;
+}
+
+.divtorate{
+    padding-top: 80px;
+}
+
+.grid{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.divStartDate{
+    width: 50%;
+    flex-basis: auto;
+    display: inline-block;
+}
+
+
+.divEstimate{
+    width: 50%;
+    padding-left: 30px;
+    flex-basis: auto;
+    display: inline-block;
+}
+
+
+
+
+@font-face {
+    font-family: 'Acumin Pro';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Acumin Pro'), url('../fonts/acumin/Acumin-RPro.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Acumin Pro Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Acumin Pro Italic'), url('../fonts/acumin/Acumin-ItPro.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Acumin Pro Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Acumin Pro Bold'), url('../fonts/acumin/Acumin-BdPro.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Acumin Pro Bold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Acumin Pro Bold Italic'), url('../fonts/acumin/Acumin-BdItPro.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Calibre Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Regular'), url('../fonts/calibre/CalibreRegular.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Regular Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Regular Italic'), url('../fonts/calibre/CalibreRegularItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Thin';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Thin'), url('../fonts/calibre/CalibreThin.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Thin Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Thin Italic'), url('../fonts/calibre/CalibreThinItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Light';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Light'), url('../fonts/calibre/CalibreLight.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Light Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Light Italic'), url('../fonts/calibre/CalibreLightItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Medium'), url('../fonts/calibre/CalibreMedium.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Medium Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Medium Italic'), url('../fonts/calibre/CalibreMediumItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Semibold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Semibold'), url('../fonts/calibre/CalibreSemibold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Semibold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Semibold Italic'), url('../fonts/calibre/CalibreSemiboldItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Bold'), url('../fonts/calibre/CalibreBold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Bold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Bold Italic'), url('../fonts/calibre/CalibreBoldItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Black';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Black'), url('../fonts/calibre/CalibreBlack.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Calibre Black Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Calibre Black Italic'), url('../fonts/calibre/CalibreBlackItalic.woff') format('woff');
+}
