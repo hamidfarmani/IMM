@@ -13,8 +13,18 @@ Main functionalities
 3. Import to MySQL
 4. Export from MongoDB
 ---
-Sample *.Json
-----
+Install and run
+---
+To build Grails, clone this GitHub repository and execute the install Gradle target:
+```
+git clone https://github.com/hamidfarmani/IMM.git
+cd IMM
+grails run-app
+```
+Usage
+---
+
+### Sample *.Json  
 To import your data into MySQL database, your json file should look
 like the below sample:
 ```
@@ -31,23 +41,12 @@ like the below sample:
 	]
 }
 ```  
-Initialize MongoDB
----
+### Initialize MongoDB  
 In order to save mock data to MongoDB, you can call the provided 
 method which is:
 [/IMM/file/saveToMongo](http://localhost:8090/IMM/file/saveToMongo)
 This allows you to have some data in your MongoDB.  
 
-Install and run
----
-To build Grails, clone this GitHub repository and execute the install Gradle target:
-```
-git clone https://github.com/hamidfarmani/IMM.git
-cd IMM
-grails run-app
-```
-Usage
----
 ![Image](grails-app/assets/images/screenshot.JPG)
 
 ### Import to MySQL  
