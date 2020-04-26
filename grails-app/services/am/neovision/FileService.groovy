@@ -2,8 +2,6 @@ package am.neovision
 
 import grails.converters.JSON
 import grails.transaction.Transactional
-import groovy.json.JsonBuilder
-import groovy.json.JsonSlurper
 import org.codehaus.groovy.grails.web.json.JSONArray
 import org.codehaus.groovy.grails.web.json.JSONObject
 
@@ -53,7 +51,7 @@ class FileService {
             }
             array.put(temp)
         }
-        responseObject.put("ObjectStorage",array)
+        responseObject.put(className,array)
         responseObject
     }
 }
