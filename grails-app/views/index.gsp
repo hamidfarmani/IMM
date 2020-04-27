@@ -7,10 +7,14 @@
 	</head>
 	<body>
 	<div class="container center-wrapper">
-
-	<g:link controller="file" action="getItemsFromMongo">
+			<g:form controller="file" action="getItemsFromMongo">
+				<g:each in="${allDomains}" status="i" var="domain">
+				${domain}
+				<g:checkBox name="checkedDomains" value="${domain}" checked=""/>
+				<br>
+			</g:each>
 		<button class="custom-button submit">Download MongoDB content (Json)</button>
-	</g:link>
+		</g:form>
 
 	<g:form controller="file" action="uploadJsonFileToMySQL" enctype="multipart/form-data">
 		<input name="jsonfile" type="file" />

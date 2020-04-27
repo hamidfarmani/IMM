@@ -1,5 +1,6 @@
 package am.neovision
 
+
 import grails.converters.JSON
 import grails.transaction.Transactional
 import org.codehaus.groovy.grails.web.json.JSONArray
@@ -11,30 +12,44 @@ class FileService {
 
     def grailsApplication
 
+    StringBuilder sb = new StringBuilder()
 
     def loopThroughJson(Object input) throws JSONException {
         if (input instanceof JSONObject) {
-            Iterator<?> keys = ((JSONObject) input).keys();
+            Iterator<?> keys = ((JSONObject) input).keys()
             while (keys.hasNext()) {
-                String key = (String) keys.next();
+                String key = (String) keys.next()
                 if (!(((JSONObject) input).get(key) instanceof JSONArray)){
                     if (((JSONObject) input).get(key) instanceof JSONObject) {
-                        loopThroughJson(((JSONObject) input).get(key));
+                        loopThroughJson(((JSONObject) input).get(key))
                     } else {
-                        System.out.println(key + "=" + ((JSONObject) input).get(key));
+                        sb.append("\"" + key + "\"" + ':' + "\"" + ((JSONObject) input).get(key) + "\"" + "\n")
+                        if(keys.hasNext()){
+                            sb.append(",")
+                        }
+                        println "*: " + sb.toString()
+//                        println(key + "=" + ((JSONObject) input).get(key))
                     }
                 } else {
-                    println 'key: ' +key
-                    loopThroughJson(new JSONArray(((JSONObject) input).get(key).toString()));
+                    println 'key: ' + key
+                    sb.append("\"" + key + "\"" + "\n")
+                    loopThroughJson(new JSONArray(((JSONObject) input).get(key).toString()))
                 }
             }
         }
 
         if (input instanceof JSONArray) {
+            sb.append(":[")
             for (int i = 0; i < ((JSONArray) input).length(); i++) {
+                sb.append("{")
                 JSONObject a = ((JSONArray) input).getJSONObject(i);
                 loopThroughJson(a);
+                sb.append("}")
+                if(i<((JSONArray) input).length()-1){
+                    sb.append(",")
+                }
             }
+            sb.append("]")
         }
 
     }
@@ -57,6 +72,10 @@ class FileService {
                     println e
                 }
             }
+
+
+
+
             println domainInstance.properties
             domainInstance.save()
         }
@@ -71,12 +90,15 @@ class FileService {
         objectStorage.save()
     }
 
-    def getAllFromMongo(){
+    def getAllFromMongo(def selectedDomains){
         String className = "ObjectStorage"
         Class inputDomainClass = grailsApplication.domainClasses.find { it.clazz.simpleName == className }.clazz
         String packageName = inputDomainClass.getPackage().getName() + '.'
         def columnNames = grailsApplication.getDomainClass(packageName+className).persistentProperties.collect { it.name }
-        def listOfObjectStorages = ObjectStorage.getAll()
+        selectedDomains = selectedDomains?:getAllDomains()
+        def listOfObjectStorages = ObjectStorage.withCriteria {
+            'in'("domainName",selectedDomains)
+        }
         JSONArray array = new JSONArray()
         JSONObject responseObject = new JSONObject()
         listOfObjectStorages.each { objectStorage ->
@@ -88,5 +110,13 @@ class FileService {
         }
         responseObject.put(className,array)
         responseObject
+    }
+
+    def getAllDomains(){
+        grailsApplication.getArtefacts("Domain")*.clazz.simpleName
+    }
+
+    def getPackage(){
+
     }
 }
