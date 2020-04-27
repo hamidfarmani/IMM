@@ -5,7 +5,7 @@ import am.neovision.author.Author
 class Book {
 
     String title
-    Author author
+    static belongsTo = [author: Author]
 
     static mapping = {
         version false

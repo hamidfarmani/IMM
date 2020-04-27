@@ -1,7 +1,11 @@
 package am.neovision
 
+import am.neovision.author.Author
+import org.codehaus.groovy.grails.web.json.JSONArray
 import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.http.HttpStatus
+
+import javax.transaction.Transactional
 
 class FileController {
 
@@ -17,14 +21,11 @@ class FileController {
     def uploadJsonFileToMySQL(){
         def input = request.getFile("jsonfile").inputStream.text
         if(input != "") {
-//            JSONObject o = new JSONObject(input)
-//            fileService.loopThroughJson(o)
             fileService.saveInMySQL(input)
-
         }else{
             flash.message = message(code: "file.empty", status: HttpStatus.BAD_REQUEST)
         }
-        render view: '../index'
+        redirect view: '../index'
     }
 
     def saveToMongo(){

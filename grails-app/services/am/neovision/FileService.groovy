@@ -1,6 +1,6 @@
 package am.neovision
 
-
+import am.neovision.author.Author
 import grails.converters.JSON
 import grails.transaction.Transactional
 import org.codehaus.groovy.grails.web.json.JSONArray
@@ -12,49 +12,6 @@ class FileService {
 
     def grailsApplication
 
-    StringBuilder sb = new StringBuilder()
-
-    def loopThroughJson(Object input) throws JSONException {
-        if (input instanceof JSONObject) {
-            Iterator<?> keys = ((JSONObject) input).keys()
-            while (keys.hasNext()) {
-                String key = (String) keys.next()
-                if (!(((JSONObject) input).get(key) instanceof JSONArray)){
-                    if (((JSONObject) input).get(key) instanceof JSONObject) {
-                        loopThroughJson(((JSONObject) input).get(key))
-                    } else {
-                        sb.append("\"" + key + "\"" + ':' + "\"" + ((JSONObject) input).get(key) + "\"" + "\n")
-                        if(keys.hasNext()){
-                            sb.append(",")
-                        }
-                        println "*: " + sb.toString()
-//                        println(key + "=" + ((JSONObject) input).get(key))
-                    }
-                } else {
-                    println 'key: ' + key
-                    sb.append("\"" + key + "\"" + "\n")
-                    loopThroughJson(new JSONArray(((JSONObject) input).get(key).toString()))
-                }
-            }
-        }
-
-        if (input instanceof JSONArray) {
-            sb.append(":[")
-            for (int i = 0; i < ((JSONArray) input).length(); i++) {
-                sb.append("{")
-                JSONObject a = ((JSONArray) input).getJSONObject(i);
-                loopThroughJson(a);
-                sb.append("}")
-                if(i<((JSONArray) input).length()-1){
-                    sb.append(",")
-                }
-            }
-            sb.append("]")
-        }
-
-    }
-
-
     def saveInMySQL(def input){
         JSONObject inputJsonObject = new JSONObject(input)
         String className = inputJsonObject.keys().getAt(0)
@@ -63,19 +20,21 @@ class FileService {
         def columnNames = grailsApplication.getDomainClass(packageName+className).persistentProperties.collect { it.name }
 
         inputJsonObject.get(className).each { row ->
-
             def domainInstance = inputDomainClass.newInstance()
             columnNames.each{ col ->
                 try{
-                    domainInstance."$col" = row.get(col)
+                    def a = row.get(col)
+                    if(a instanceof JSONArray){
+                        a.each{ obj ->
+                            domainInstance.addTo(col,obj)
+                        }
+                    }else {
+                        domainInstance."$col" = row.get(col)
+                    }
                 }catch(Exception e){
                     println e
                 }
             }
-
-
-
-
             println domainInstance.properties
             domainInstance.save()
         }
