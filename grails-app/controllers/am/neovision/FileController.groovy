@@ -14,12 +14,6 @@ class FileController {
         render(view: '/index', model: [allDomains: allDomains])
     }
 
-    def checkedItems(){
-
-        println values
-        redirect(view: '/index')
-    }
-
     def uploadJsonFileToMySQL(){
         def input = request.getFile("jsonfile").inputStream.text
         if(input != "") {
