@@ -84,6 +84,13 @@ grails.hibernate.cache.queries = false
 grails.hibernate.pass.readonly = false
 // configure passing read-only to OSIV session by default, requires "singleSession = false" OSIV mode
 grails.hibernate.osiv.readonly = false
+grails.databinding.dateFormats = [
+        'dd/MM/yyyy HH:mm:ss',
+        'dd/MM/yyyy',
+        'yyyy-MM-dd HH:mm:ss',
+        'yyyy-MM-dd HH:mm:ss.S',
+        "yyyy-MM-dd'T'hh:mm:ss'Z'"
+]
 
 environments {
     development {
