@@ -27,6 +27,7 @@ class FileService {
             columnNames.each{ col ->
                 try{
                     def a = row.get(col)
+//                    println "a: ${a} \t\t class: ${a.class}"
                     if(a instanceof JSONArray){
                         a.each{ obj ->
                             domainInstance.addTo(col,obj)
@@ -36,7 +37,7 @@ class FileService {
                         Date date = format.parse(a)
                         println "\t\t ${date}"
                         domainInstance."$col" = date
-                    }else {
+                    } else {
                         domainInstance."$col" = row.get(col)
                     }
                 }catch(Exception e){
@@ -87,7 +88,7 @@ class FileService {
 
     }
 
-    public static boolean isValidDate(String d) {
+     static boolean isValidDate(String d) {
         String regex = "(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d"
         Pattern pattern = Pattern.compile(regex)
         Matcher matcher = pattern.matcher((CharSequence)d)

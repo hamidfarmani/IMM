@@ -30,7 +30,7 @@ class FileController {
 
     def saveToMongo(){
         mockService.fillTempObject()
-        render view:'../index'
+        redirect view:'../index'
     }
 
     def getItemsFromMongo(){
