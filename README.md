@@ -62,8 +62,10 @@ This allows you to have some data in your MongoDB.
 Choose your json file which is like the mentioned example and click 
 on `Import To MySQL` button.
 
+
 ### Download MongoDB Content  
-![Image](grails-app/assets/images/screenshot2.JPG)
+![Image](grails-app/assets/images/screenshot2.JPG)  
+
 This allows you to download the content that you want from MongoDB
  and get its json file. The download will start automatically 
  after you checked the domains that you want and then the download 

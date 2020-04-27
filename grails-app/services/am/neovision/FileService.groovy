@@ -17,35 +17,36 @@ class FileService {
 
     def saveInMySQL(def input){
         JSONObject inputJsonObject = new JSONObject(input)
-        String className = inputJsonObject.keys().getAt(0)
-        Class inputDomainClass = grailsApplication.domainClasses.find { it.clazz.simpleName == className }.clazz
-        String packageName = inputDomainClass.getPackage().getName() + '.'
-        def columnNames = grailsApplication.getDomainClass(packageName+className).persistentProperties.collect { it.name }
+        for (int i = 0; i<inputJsonObject.keys().size(); i++) {
+            String className = inputJsonObject.keys().getAt(i)
+            Class inputDomainClass = grailsApplication.domainClasses.find { it.clazz.simpleName == className }.clazz
+            String packageName = inputDomainClass.getPackage().getName() + '.'
+            def columnNames = grailsApplication.getDomainClass(packageName + className).persistentProperties.collect { it.name }
 
-        inputJsonObject.get(className).each { row ->
-            def domainInstance = inputDomainClass.newInstance()
-            columnNames.each{ col ->
-                try{
-                    def a = row.get(col)
-//                    println "a: ${a} \t\t class: ${a.class}"
-                    if(a instanceof JSONArray){
-                        a.each{ obj ->
-                            domainInstance.addTo(col,obj)
+            inputJsonObject.get(className).each { row ->
+                JSONObject jj = new JSONObject(row)
+                def domainInstance = inputDomainClass.newInstance()
+                columnNames.each { col ->
+                    try {
+                        def a = jj.get(col)
+                        if (a instanceof JSONArray) {
+                            a.each { obj ->
+                                domainInstance.addTo(col, obj)
+                            }
+                        } else if ((a instanceof String) && isValidDate(a)) {
+                            DateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH)
+                            Date date = format.parse(a)
+                            domainInstance."$col" = date
+                        } else {
+                            domainInstance."$col" = jj.get(col)
                         }
-                    } else if ((a instanceof String) && isValidDate(a)){
-                        DateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH)
-                        Date date = format.parse(a)
-                        println "\t\t ${date}"
-                        domainInstance."$col" = date
-                    } else {
-                        domainInstance."$col" = row.get(col)
+                    } catch (Exception e) {
+                        println e
                     }
-                }catch(Exception e){
-                    println e
                 }
+                println domainInstance.properties
+                domainInstance.save()
             }
-            println domainInstance.properties
-            domainInstance.save()
         }
     }
 
@@ -59,24 +60,20 @@ class FileService {
     }
 
     def getAllFromMongo(def selectedDomains){
-        String className = "ObjectStorage"
-        Class inputDomainClass = grailsApplication.domainClasses.find { it.clazz.simpleName == className }.clazz
-        String packageName = inputDomainClass.getPackage().getName() + '.'
-        def columnNames = grailsApplication.getDomainClass(packageName+className).persistentProperties.collect { it.name }
         selectedDomains = selectedDomains?:getAllDomains()
         def listOfObjectStorages = ObjectStorage.withCriteria {
             'in'("domainName",selectedDomains)
         }
-        JSONArray array = new JSONArray()
         JSONObject responseObject = new JSONObject()
-        listOfObjectStorages.each { objectStorage ->
-            JSONObject temp = new JSONObject()
-            columnNames.each { col ->
-                temp.put(col, objectStorage.dbo.get(col))
+        for(def dom : selectedDomains) {
+            JSONArray innerArray = new JSONArray()
+            for (int i = 0; i < listOfObjectStorages.size(); i++) {
+                if(listOfObjectStorages[i].dbo.get("domainName").equals(dom)) {
+                    innerArray.put(listOfObjectStorages[i].dbo.get("dataJsonValues"))
+                }
             }
-            array.put(temp)
+            responseObject.put(dom,innerArray)
         }
-        responseObject.put(className,array)
         responseObject
     }
 

@@ -30,10 +30,10 @@ class MockService {
             user.setHeight(140.6 + i)
 
             if(i%2==0){
-                user.addTo("roles",role)
-                user.addTo("roles",role2)
+                user.addTo("roles",new Role(name: "USER"))
+                user.addTo("roles",new Role(name: "USER"))
             }else{
-                user.addTo("roles",role)
+                user.addTo("roles",new Role(name: "ADMIN"))
             }
             fileService.saveInMongo(user)
         }
