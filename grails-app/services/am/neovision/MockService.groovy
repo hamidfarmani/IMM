@@ -4,18 +4,18 @@ class MockService {
     def fileService
 
     def fillTempObject() {
-        for (int i = 0; i < 5; i++) {
-            Book book = new Book()
-            book.setTitle("title $i")
-            fileService.saveInMongo(book)
-        }
-
-        for (int i = 0; i < 5; i++) {
-            Country country = new Country()
-            country.setName("name $i")
-            country.setContinent("continent $i")
-            fileService.saveInMongo(country)
-        }
+//        for (int i = 0; i < 5; i++) {
+//            Book book = new Book()
+//            book.setTitle("title $i")
+//            fileService.saveInMongo(book)
+//        }
+//
+//        for (int i = 0; i < 5; i++) {
+//            Country country = new Country()
+//            country.setName("name $i")
+//            country.setContinent("continent $i")
+//            fileService.saveInMongo(country)
+//        }
 
         Role role = new Role(name: "ADMIN")
         role.save()
@@ -35,6 +35,7 @@ class MockService {
             }else{
                 user.addTo("roles",new Role(name: "ADMIN"))
             }
+
             fileService.saveInMongo(user)
         }
 

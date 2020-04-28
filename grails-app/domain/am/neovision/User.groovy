@@ -3,7 +3,6 @@ package am.neovision
 class User {
 
     String fullname
-    Date birthdate
     Double height
     Integer numberOfChild
 
@@ -15,7 +14,6 @@ class User {
 
     static constraints = {
         fullname()
-        birthdate()
         height()
         numberOfChild()
         roles(nullable: true)

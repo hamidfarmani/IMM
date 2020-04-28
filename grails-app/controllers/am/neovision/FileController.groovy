@@ -1,11 +1,7 @@
 package am.neovision
 
-import am.neovision.author.Author
-import org.codehaus.groovy.grails.web.json.JSONArray
-import org.codehaus.groovy.grails.web.json.JSONObject
-import org.springframework.http.HttpStatus
 
-import javax.transaction.Transactional
+import org.springframework.http.HttpStatus
 
 class FileController {
 

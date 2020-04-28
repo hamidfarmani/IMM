@@ -9,6 +9,7 @@ class Author {
 
     static mapping = {
         version false
+         books cascade: 'all-delete-orphan'
     }
 
     static constraints = {
