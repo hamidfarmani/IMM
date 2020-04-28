@@ -103,12 +103,7 @@ class FileService {
         }
     }
 
-    def saveInMongo(def domObj){
-        ObjectStorage objectStorage = new ObjectStorage()
-        objectStorage.setDomainName(domObj.class.getSimpleName())
-        def domainJson =  domObj as JSON
-        domainJson.setExcludes(domObj.class, ["class","id"])
-        objectStorage.setDataJsonValues(domainJson.toString())
+    def saveInMongo(ObjectStorage objectStorage){
         objectStorage.save()
     }
 

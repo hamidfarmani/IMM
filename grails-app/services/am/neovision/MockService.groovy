@@ -1,51 +1,99 @@
 package am.neovision
 
+import com.google.gson.Gson
+import grails.converters.JSON
+import org.codehaus.groovy.grails.web.json.JSONArray
+import org.codehaus.groovy.grails.web.json.JSONObject
+
+import java.lang.reflect.Array
+
 class MockService {
     def fileService
 
     def fillTempObject() {
-//        for (int i = 0; i < 5; i++) {
-//            Book book = new Book()
-//            book.setTitle("title $i")
-//            fileService.saveInMongo(book)
-//        }
-//
-//        for (int i = 0; i < 5; i++) {
-//            Country country = new Country()
-//            country.setName("name $i")
-//            country.setContinent("continent $i")
-//            fileService.saveInMongo(country)
-//        }
-
-        Role role = new Role(name: "ADMIN")
-        role.save()
-        Role role2 = new Role(name: "USER")
-        role2.save()
 
         for (int i = 0; i < 5; i++) {
-            User user = new User()
-            user.setFullname("fullname $i")
-            user.setBirthdate(new Date())
-            user.setNumberOfChild(i)
-            user.setHeight(140.6 + i)
+            JSONObject country = new JSONObject()
+            country.put("name", "name $i")
+            country.put("continent","continent $i")
+            ObjectStorage objectStorage = new ObjectStorage()
+            objectStorage.setDomainName("Country")
+            objectStorage.setDataJsonValues(country.toString())
+            fileService.saveInMongo(objectStorage)
+        }
+
+
+        for (int i = 0; i < 5; i++) {
+            JSONObject user = new JSONObject()
+            user.put("fullname", "fullname $i")
+            user.put("numberOfChild",i)
+            user.put("height",140.6 + i)
+            JSONArray roles = new JSONArray()
+            JSONObject r = new JSONObject()
 
             if(i%2==0){
-                user.addTo("roles",new Role(name: "USER"))
-                user.addTo("roles",new Role(name: "USER"))
+                r.put("name" , "ADMIN")
             }else{
-                user.addTo("roles",new Role(name: "ADMIN"))
+                r.put("name" , "USER")
             }
+            roles.add(r)
+            user.put("roles",roles)
 
-            fileService.saveInMongo(user)
+            ObjectStorage objectStorage = new ObjectStorage()
+            objectStorage.setDomainName("User")
+            objectStorage.setDataJsonValues(user.toString())
+            fileService.saveInMongo(objectStorage)
         }
 
         for (int i = 0; i < 5; i++) {
-            Address address = new Address()
-            address.setCity("City $i")
-            address.setFullAddress("Full Address $i")
-            address.setState("State $i")
-            address.setCountry(Country.get(i+1))
-            fileService.saveInMongo(address)
+            JSONObject address = new JSONObject()
+            address.put("city", "city $i")
+            address.put("fullAddress","full address $i")
+            address.put("state","state $i")
+            JSONObject country = new JSONObject()
+            country.put("name", "Armenia")
+            country.put("continent","Asia")
+            address.put("country",country)
+
+            ObjectStorage objectStorage = new ObjectStorage()
+            objectStorage.setDomainName("Address")
+            objectStorage.setDataJsonValues(address.toString())
+            fileService.saveInMongo(objectStorage)
         }
+
+        for (int i = 0; i < 5; i++) {
+            JSONObject author = new JSONObject()
+            author.put("firstname", "first $i")
+            author.put("lastname","last $i")
+            JSONArray books = new JSONArray()
+            JSONObject book = new JSONObject()
+
+            if(i%2==0){
+                book.put("title" , "first")
+                book.put("title" , "second")
+                book.put("title" , "third")
+                book.put("title" , "fourth")
+            }else{
+                book.put("title" , "new book")
+            }
+            books.add(book)
+            author.put("books",books)
+
+            ObjectStorage objectStorage = new ObjectStorage()
+            objectStorage.setDomainName("Author")
+            objectStorage.setDataJsonValues(author.toString())
+            fileService.saveInMongo(objectStorage)
+        }
+
+
+
+        JSONObject newRole = new JSONObject()
+        newRole.put("name" , "ADMIN")
+        newRole.put("name" , "USER")
+
+        ObjectStorage os = new ObjectStorage()
+        os.setDomainName("Role")
+        os.setDataJsonValues(newRole.toString())
+        fileService.saveInMongo(os)
     }
 }
