@@ -11,7 +11,7 @@ Artifact | Version |
 --- | --- | 
 Grails | 2.5.6 |
 MongoDB | 5.0.8.RELEASE |
-MySQL | 5.1.29 |
+MySQL Connector| 5.1.46 |
 Hibernate | 4:5.0.8.RELEASE |
 
 
