@@ -152,7 +152,8 @@ section{
         BUTTONS
 =============================*/
 .btn-general{
-    font-family: Raleway, sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: bold;
     border-radius: 28px;
     font-size: 13px;
     text-transform: uppercase;
@@ -513,17 +514,18 @@ footer p span{
 .custom-button{
     border: 1px solid #6a7385;
     background: none;
-    background-color: #8EA8C3;
-    color: #161B33;
-    padding: 5px 10px;
+    background-color: #ebeeee;
+    color: #666666;
+    padding: 7px 15px;
     font-size: 17px;
-    font-family: "Raleway";
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: bold;
     cursor: pointer;
     margin: 10px;
     transition: .5s;
-    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    box-shadow: 0 0 5px rgba(0,0,0,0.15);
     text-transform: uppercase;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .custom-button:hover{
@@ -537,7 +539,10 @@ footer p span{
 }
 
 .submit:hover{
-    background-color: #0B7E4D;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    background-color: #eef1f6;
+    border-color: transparent;
+    color: black;
 }
 
 .edit:hover{
@@ -622,74 +627,6 @@ footer p span{
     float: right;
 }
 
-/*===========================
-        amortization
-=============================*/
-.amortizationGrid{
-    width: 100%;
-    background: white;
-    border: 1px solid #cfcfd4;
-    display: flex;
-    flex-flow: row wrap;
-
-}
-
-.lefGrid{
-    padding: 10px;
-    background: #e6e6e6;
-    width: 50%;
-    flex-basis: auto;
-    display: inline-block;
-}
-
-.rightGrid{
-    background: white;
-    width: 50%;
-    flex-basis: auto;
-    display: inline-block;
-    text-align: center;
-}
-
-.amortizationInput{
-    margin-bottom: 20px;
-    font-family: "Acumin Pro Bold";
-    border: 1px solid #a7a8af;
-    padding: .5rem .75rem;
-    font-size: 16px;
-    display: block;
-    width: 100%;
-}
-
-.amortizationInput:focus{
-    border-bottom: 2px solid blue;
-}
-
-.amortizationButton{
-    margin-top: 15px;
-    width: 100%;
-    background-color: #3139f2;
-    color: white;
-    padding-left: 0;
-    padding-right: 0;
-    line-height: 2;
-    border-radius: 0%;
-}
-.amortizationButton:hover{
-    background-color: black;
-    color: white;
-}
-
-.linktorate{
-    font-size: 20px;
-    padding-left: 50px;
-    padding-right: 50px;
-    border: 4px solid orange;
-}
-
-.linktorate:hover{
-    background-color: orange;
-}
-
 .input-icons i {
     position: absolute;
 }
@@ -711,20 +648,6 @@ footer p span{
 
 }
 
-#monthlyPayment{
-    font-family: "Acumin Pro Bold";
-    font-size: 4rem;
-    color: black;
-    line-height: 1.1;
-}
-
-.amotizationTitle{
-    font-family: "Acumin Pro Bold";
-    font-size: 4rem;
-    line-height: 1.1;
-    color: black;
-
-}
 
 .calculatorAcumin{
     font-family: "Acumin Pro Bold";
