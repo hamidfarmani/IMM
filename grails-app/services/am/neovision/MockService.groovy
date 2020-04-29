@@ -28,9 +28,20 @@ class MockService {
             user.put("fullname", "fullname $i")
             user.put("numberOfChild",i)
             user.put("height",140.6 + i)
+
+            JSONObject address = new JSONObject()
+            address.put("city", "city $i")
+            address.put("fullAddress","full address $i")
+            address.put("state","state $i")
+            JSONObject country = new JSONObject()
+            country.put("name", "Armenia")
+            country.put("continent","Asia")
+            address.put("country",country)
+
+            user.put("address", address)
+
             JSONArray roles = new JSONArray()
             JSONObject r = new JSONObject()
-
             if(i%2==0){
                 r.put("name" , "ADMIN")
             }else{
@@ -42,22 +53,6 @@ class MockService {
             ObjectStorage objectStorage = new ObjectStorage()
             objectStorage.setDomainName("User")
             objectStorage.setDataJsonValues(user.toString())
-            fileService.saveInMongo(objectStorage)
-        }
-
-        for (int i = 0; i < 5; i++) {
-            JSONObject address = new JSONObject()
-            address.put("city", "city $i")
-            address.put("fullAddress","full address $i")
-            address.put("state","state $i")
-            JSONObject country = new JSONObject()
-            country.put("name", "Armenia")
-            country.put("continent","Asia")
-            address.put("country",country)
-
-            ObjectStorage objectStorage = new ObjectStorage()
-            objectStorage.setDomainName("Address")
-            objectStorage.setDataJsonValues(address.toString())
             fileService.saveInMongo(objectStorage)
         }
 
