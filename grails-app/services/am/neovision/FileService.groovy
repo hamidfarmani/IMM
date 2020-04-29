@@ -2,6 +2,7 @@ package am.neovision
 
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import grails.converters.JSON
 import grails.transaction.Transactional
 import org.codehaus.groovy.grails.web.json.JSONArray
@@ -18,7 +19,10 @@ class FileService {
     def grailsApplication
 
     def saveInMySQL(def input) {
-        Gson gson = new Gson()
+        GsonBuilder gsonBuilder = new GsonBuilder()
+        gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm")
+        Gson gson = gsonBuilder.create()
+//        Gson gson = new Gson()
         JSONObject domainJson = new JSONObject(input)
         for (int i = 0; i<domainJson.keys().size(); i++) {
             String className = domainJson.keys().getAt(i)

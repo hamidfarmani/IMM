@@ -65,11 +65,10 @@ class MockService {
 
             if(i%2==0){
                 book.put("title" , "first")
-                book.put("title" , "second")
-                book.put("title" , "third")
-                book.put("title" , "fourth")
+                book.put("publishedDate" , "2020-04-23 21:02")
             }else{
                 book.put("title" , "new book")
+                book.put("publishedDate" , "2020-01-23 06:39")
             }
             books.add(book)
             author.put("books",books)

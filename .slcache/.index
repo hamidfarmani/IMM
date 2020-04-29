@@ -5333,3 +5333,17 @@ n:2575:script15881125861031090847628$_run_closure2
 n:2571:script15881125861031090847628$_run_closure2$_closure7
 n:2571:script15881125861031090847628$_run_closure2$_closure8
 n:3050:script15881125861031090847628$_run_closure3
+n:8335:com/google/gson/GsonBuilder
+n:3414:com/google/gson/FieldNamingPolicy
+n:291:com/google/gson/ExclusionStrategy
+n:628:org/grails/databinding/BindingFormat
+n:3256:org/grails/databinding/compiler/BindingFormatASTTransformation
+n:5959:script15881779784711090847628
+n:2431:script15881779784711090847628$_run_closure1
+n:2458:script15881779784711090847628$_run_closure1$_closure4
+n:2716:script15881779784711090847628$_run_closure1$_closure4$_closure5
+n:2412:script15881779784711090847628$_run_closure1$_closure4$_closure5$_closure6
+n:2575:script15881779784711090847628$_run_closure2
+n:2571:script15881779784711090847628$_run_closure2$_closure7
+n:2571:script15881779784711090847628$_run_closure2$_closure8
+n:3050:script15881779784711090847628$_run_closure3
