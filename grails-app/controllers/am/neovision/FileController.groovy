@@ -31,7 +31,6 @@ class FileController {
     }
 
     def getItemsFromMongo(){
-        println params
         def selectedDomains = request.getParameterValues("checkedDomains")
         def responseObject = fileService.getAllFromMongo(selectedDomains)
         def contentType = "application/octet-stream"
