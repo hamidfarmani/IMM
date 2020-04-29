@@ -5,6 +5,7 @@ class User {
     String fullname
     Double height
     Integer numberOfChild
+    Address address
 
     static hasMany = [roles: Role]
 
@@ -17,5 +18,6 @@ class User {
         height()
         numberOfChild()
         roles(nullable: true)
+        address(nullable: true)
     }
 }
