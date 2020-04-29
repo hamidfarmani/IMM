@@ -108,7 +108,7 @@ class FileService {
     }
 
     def getAllFromMongo(def selectedDomains){
-        selectedDomains = selectedDomains?:getAllDomains()
+        selectedDomains = selectedDomains?:getAllDomains()-['ObjectStorage']
         def listOfObjectStorages = ObjectStorage.withCriteria {
             'in'("domainName",selectedDomains)
         }

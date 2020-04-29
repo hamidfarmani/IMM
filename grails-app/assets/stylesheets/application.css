@@ -798,6 +798,12 @@ footer p span{
     display: inline-block;
 }
 
+ul li{
+    display: block;
+    text-align: left;
+}
+
+
 
 
 

@@ -1,6 +1,7 @@
 package am.neovision
 
-
+import org.codehaus.groovy.grails.web.json.JSONArray
+import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.http.HttpStatus
 
 class FileController {
@@ -30,6 +31,7 @@ class FileController {
     }
 
     def getItemsFromMongo(){
+        println params
         def selectedDomains = request.getParameterValues("checkedDomains")
         def responseObject = fileService.getAllFromMongo(selectedDomains)
         def contentType = "application/octet-stream"
