@@ -1,7 +1,7 @@
 Interactions between MongoDB and MySQL in Grails/Groovy 
 =======================================================
-**version 2.0.0**  
-You can import your json files dynamically into MySQL database
+**version 3.1.0**  
+The MongoDB would get some mock data during the first-run. You can import your json files dynamically into MySQL database
 using dynamic domain calls. You can also get all properties
 of MongoDB with downloading a json file.
 
@@ -69,7 +69,8 @@ on `Import To MySQL` button.
 This allows you to download the content that you want from MongoDB
  and get its json file. The download will start automatically 
  after you checked the domains that you want and then the download 
- button.  
+ button. The downloaded file will be save in Export folder, under a 
+ folder name of "selected domains - date of request" in export.json file.  
  
 
 About
