@@ -40,7 +40,9 @@ class FileService {
         }catch(JSONException e) {
             println(e.getMessage())
             throw new JSONException(e)
-
+        }catch(NullPointerException e) {
+            println(e.getMessage())
+            throw new NullPointerException()
         }
     }
 

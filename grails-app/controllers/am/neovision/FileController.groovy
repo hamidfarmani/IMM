@@ -1,8 +1,6 @@
 package am.neovision
 
-import org.codehaus.groovy.grails.web.json.JSONArray
 import org.codehaus.groovy.grails.web.json.JSONException
-import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.http.HttpStatus
 
 class FileController {
@@ -30,6 +28,8 @@ class FileController {
             }
         }catch(JSONException e){
             flash.message = message(code: "file.invalid.json", status: HttpStatus.BAD_REQUEST)
+        } catch(NullPointerException e){
+            flash.message = message(code: "file.invalid.domain", status: HttpStatus.BAD_REQUEST)
         } finally {
             redirect view: '../index'
         }
