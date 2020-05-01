@@ -56,15 +56,15 @@ method which is:
 [/IMM/file/saveToMongo](http://localhost:8090/IMM/file/saveToMongo)
 This allows you to have some data in your MongoDB.  
 
-![Image](grails-app/assets/images/screenshot.JPG)
+![Image](grails-app/assets/images/screenshot V3.1.0.JPG)  
 
 ### Import to MySQL  
 Choose your json file which is like the mentioned example and click 
 on `Import To MySQL` button.
 
 
-### Download MongoDB Content  
-![Image](grails-app/assets/images/screenshot2.JPG)  
+### Download MongoDB Content    
+![Image](grails-app/assets/images/screenshot V3.1.0 domains.JPG)    
 
 This allows you to download the content that you want from MongoDB
  and get its json file. The download will start automatically 
