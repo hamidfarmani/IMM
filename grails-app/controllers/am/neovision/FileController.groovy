@@ -1,7 +1,12 @@
 package am.neovision
 
+import groovy.json.JsonBuilder
+import org.apache.commons.io.FileUtils
 import org.codehaus.groovy.grails.web.json.JSONException
 import org.springframework.http.HttpStatus
+
+import java.text.Format
+import java.text.SimpleDateFormat
 
 class FileController {
 
@@ -43,9 +48,14 @@ class FileController {
     def getItemsFromMongo(){
         def selectedDomains = request.getParameterValues("checkedDomains")
         def responseObject = fileService.getAllFromMongo(selectedDomains)
+        def jsonFile = new JsonBuilder(responseObject).toPrettyString()
         def contentType = "application/octet-stream"
         def filename = "export.json"
         response.setHeader("Content-Disposition", "attachment;filename=${filename}")
-        render(contentType: contentType, text: responseObject)
+        Format formatter = new SimpleDateFormat("YYYY-MM-dd hh-mm-ss");
+        String name = "${selectedDomains:'All'} - ${formatter.format(new Date())}"
+        new File("./Export/${name}").mkdirs()
+        new File("./Export/${name}/${filename}").write(jsonFile)
+        render(contentType: contentType, text: jsonFile)
     }
 }
