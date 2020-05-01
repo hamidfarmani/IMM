@@ -1,6 +1,7 @@
 package am.neovision
 
 import org.codehaus.groovy.grails.web.json.JSONArray
+import org.codehaus.groovy.grails.web.json.JSONException
 import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.http.HttpStatus
 
@@ -17,12 +18,21 @@ class FileController {
 
     def uploadJsonFileToMySQL(){
         def input = request.getFile("jsonfile").inputStream.text
-        if(input != "") {
-            fileService.saveInMySQL(input)
-        }else{
-            flash.message = message(code: "file.empty", status: HttpStatus.BAD_REQUEST)
+        try {
+            if (input == "") {
+                flash.message = message(code: "file.empty", status: HttpStatus.BAD_REQUEST)
+            } else if (request.getFile("jsonfile").contentType != "application/json") {
+                flash.message = message(code: "file.invalid.format", status: HttpStatus.BAD_REQUEST)
+            } else {
+                if (input != "") {
+                    fileService.saveInMySQL(input)
+                }
+            }
+        }catch(JSONException e){
+            flash.message = message(code: "file.invalid.json", status: HttpStatus.BAD_REQUEST)
+        } finally {
+            redirect view: '../index'
         }
-        redirect view: '../index'
     }
 
     def saveToMongo(){
