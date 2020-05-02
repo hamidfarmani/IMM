@@ -16,6 +16,12 @@ class FileService {
 
     def grailsApplication
 
+    /**
+     * Persists data into proper table of the MySQL database.
+     * @param input is the json that user uploaded.
+     * @return Nothing
+     * @throws Exception When JSON structure isn't valid or proper table isn't found
+     */
     def saveInMySQL(def input) {
         GsonBuilder gsonBuilder = new GsonBuilder()
         gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm")
@@ -57,11 +63,20 @@ class FileService {
         }
     }
 
-
+    /**
+     * Persists data into MongoDB database.
+     * @param Collection_Global instance
+     * @return Created collection.
+     */
     def saveInMongo(Collection_Global collection_Global){
         collection_Global.save()
     }
 
+    /**
+     * Retrieve data of selected domains by user from MongoDB.
+     * @param Array of selected domains.
+     * @return JsonArray of values from MongoDB.
+     */
     def getAllFromMongo(def selectedDomains){
         selectedDomains = selectedDomains?:getAllDomains()-['Collection_Global']
         def listOfCollection_Globals = Collection_Global.withCriteria {
@@ -80,6 +95,11 @@ class FileService {
         responseObject
     }
 
+    /**
+     * Using grailsApplication service to find all domain classes that exists in application.
+     * @param Nothing.
+     * @return All domains in the application.
+     */
     def getAllDomains(){
         grailsApplication.getArtefacts("Domain")*.clazz.simpleName
     }

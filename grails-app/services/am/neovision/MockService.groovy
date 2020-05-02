@@ -7,6 +7,11 @@ import org.codehaus.groovy.grails.web.json.JSONObject
 class MockService {
     def fileService
 
+    /**
+     * Filling the MongoDB with mock data.
+     * @param Nothing
+     * @return Nothing
+     */
     def fillTempObject() {
 
         for (int i = 0; i < 5; i++) {

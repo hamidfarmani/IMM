@@ -15,12 +15,22 @@ class FileController {
     def fileService
     def mockService
 
+    /**
+     * Rendering the index.gsp file with all domains in the drop-down.
+     * @param Nothing
+     * @return Array of domain's name in params.allDomains
+     */
     def index(){
         def allDomains = fileService.getAllDomains()
         allDomains -= ['Collection_Global']
         render(view: '/index', model: [allDomains: allDomains])
     }
 
+    /**
+     * Get the json file from input and import it into MySQL database. It will show proper error messages in wherever needed.
+     * @param jsonfile from request.
+     * @return proper message in flash.
+     */
     def uploadJsonFileToMySQL(){
         def input = request.getFile("jsonfile").inputStream.text
         try {
@@ -31,6 +41,7 @@ class FileController {
             } else {
                 if (input != "") {
                     fileService.saveInMySQL(input)
+                    flash.message = message(code: "file.imported", status: HttpStatus.OK)
                 }
             }
         }catch(JSONException e){
@@ -48,11 +59,21 @@ class FileController {
         }
     }
 
+    /**
+     * Used to fill the MongoDB with mock data.
+     * @param Nothing
+     * @return Nothing
+     */
     def saveToMongo(){
         mockService.fillTempObject()
         redirect view:'../index'
     }
 
+    /**
+     * Prepare a json file of selected domains and put it in Export folder. Automatically start download on-fly.
+     * @param params.checkedDomains as selected domains in index.gsp
+     * @return export.json file prettified with selected domains value
+     */
     def getItemsFromMongo(){
         Format formatter = new SimpleDateFormat("YYYY-MM-dd hh-mm-ss")
         def selectedDomains = request.getParameterValues("checkedDomains")
