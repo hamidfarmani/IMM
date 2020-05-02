@@ -40,9 +40,9 @@ class FileController {
         }catch(NullPointerException e){
             flash.message = message(code: "file.invalid.domain", status: HttpStatus.BAD_REQUEST)
         }catch(IOException e){
-            flash.message = flash.message =  message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
+            flash.message = message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
         }catch(Exception e){
-            flash.message = flash.message =  message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
+            flash.message = message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
         } finally {
             redirect view: '../index'
         }
