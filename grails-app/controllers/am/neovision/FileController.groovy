@@ -46,16 +46,15 @@ class FileController {
     }
 
     def getItemsFromMongo(){
+        Format formatter = new SimpleDateFormat("YYYY-MM-dd hh-mm-ss")
         def selectedDomains = request.getParameterValues("checkedDomains")
         def responseObject = fileService.getAllFromMongo(selectedDomains)
         def jsonFile = new JsonBuilder(responseObject).toPrettyString()
+        String filename = "${selectedDomains?:'All'} - ${formatter.format(new Date())}.json"
+        new File("./Export").mkdirs()
+        new File("./Export/${filename}").write(jsonFile)
         def contentType = "application/octet-stream"
-        def filename = "export.json"
         response.setHeader("Content-Disposition", "attachment;filename=${filename}")
-        Format formatter = new SimpleDateFormat("YYYY-MM-dd hh-mm-ss");
-        String name = "${selectedDomains:'All'} - ${formatter.format(new Date())}"
-        new File("./Export/${name}").mkdirs()
-        new File("./Export/${name}/${filename}").write(jsonFile)
         render(contentType: contentType, text: jsonFile)
     }
 }
