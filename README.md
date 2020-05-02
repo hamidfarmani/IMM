@@ -75,8 +75,7 @@ on `Import To MySQL` button.
 This allows you to download the content that you want from MongoDB
  and get its json file. The download will start automatically 
  after you checked the domains that you want and then the download 
- button. The downloaded file will be save in Export folder, under a 
- folder name of "selected domains - date of request" in export.json file.  
+ button. The downloaded file will be save in Export folder in a "selected domains - date of request".json file.  
    
 
 About
