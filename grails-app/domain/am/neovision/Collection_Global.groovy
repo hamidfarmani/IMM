@@ -1,6 +1,6 @@
 package am.neovision
 
-class ObjectStorage {
+class Collection_Global {
 
     static mapWith = "mongo"
     String domainName

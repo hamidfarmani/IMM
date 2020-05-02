@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(ObjectStorage)
-class ObjectStorageSpec extends Specification {
+@TestFor(Collection_Global)
+class CollectionGlobalSpec extends Specification {
 
     def setup() {
     }

@@ -15,7 +15,7 @@ class FileController {
 
     def index(){
         def allDomains = fileService.getAllDomains()
-        allDomains -= ['ObjectStorage']
+        allDomains -= ['Collection_Global']
         render(view: '/index', model: [allDomains: allDomains])
     }
 
@@ -54,7 +54,7 @@ class FileController {
         new File("./Export").mkdirs()
         new File("./Export/${filename}").write(jsonFile)
         def contentType = "application/octet-stream"
-        response.setHeader("Content-Disposition", "attachment;filename=${filename}")
+        response.setHeader("Content-Disposition", "attachment;filename=export.json")
         render(contentType: contentType, text: jsonFile)
     }
 }

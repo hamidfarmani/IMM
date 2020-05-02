@@ -1,11 +1,8 @@
 package am.neovision
 
-import com.google.gson.Gson
-import grails.converters.JSON
+
 import org.codehaus.groovy.grails.web.json.JSONArray
 import org.codehaus.groovy.grails.web.json.JSONObject
-
-import java.lang.reflect.Array
 
 class MockService {
     def fileService
@@ -16,10 +13,10 @@ class MockService {
             JSONObject country = new JSONObject()
             country.put("name", "name $i")
             country.put("continent","continent $i")
-            ObjectStorage objectStorage = new ObjectStorage()
-            objectStorage.setDomainName("Country")
-            objectStorage.setDataJsonValues(country.toString())
-            fileService.saveInMongo(objectStorage)
+            Collection_Global collection_Global = new Collection_Global()
+            collection_Global.setDomainName("Country")
+            collection_Global.setDataJsonValues(country.toString())
+            fileService.saveInMongo(collection_Global)
         }
 
 
@@ -50,10 +47,10 @@ class MockService {
             roles.add(r)
             user.put("roles",roles)
 
-            ObjectStorage objectStorage = new ObjectStorage()
-            objectStorage.setDomainName("User")
-            objectStorage.setDataJsonValues(user.toString())
-            fileService.saveInMongo(objectStorage)
+            Collection_Global collection_Global = new Collection_Global()
+            collection_Global.setDomainName("User")
+            collection_Global.setDataJsonValues(user.toString())
+            fileService.saveInMongo(collection_Global)
         }
 
         for (int i = 0; i < 5; i++) {
@@ -73,10 +70,10 @@ class MockService {
             books.add(book)
             author.put("books",books)
 
-            ObjectStorage objectStorage = new ObjectStorage()
-            objectStorage.setDomainName("Author")
-            objectStorage.setDataJsonValues(author.toString())
-            fileService.saveInMongo(objectStorage)
+            Collection_Global collection_Global = new Collection_Global()
+            collection_Global.setDomainName("Author")
+            collection_Global.setDataJsonValues(author.toString())
+            fileService.saveInMongo(collection_Global)
         }
 
 
@@ -85,7 +82,7 @@ class MockService {
         newRole.put("name" , "ADMIN")
         newRole.put("name" , "USER")
 
-        ObjectStorage os = new ObjectStorage()
+        Collection_Global os = new Collection_Global()
         os.setDomainName("Role")
         os.setDataJsonValues(newRole.toString())
         fileService.saveInMongo(os)

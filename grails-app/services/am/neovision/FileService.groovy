@@ -47,21 +47,21 @@ class FileService {
     }
 
 
-    def saveInMongo(ObjectStorage objectStorage){
-        objectStorage.save()
+    def saveInMongo(Collection_Global collection_Global){
+        collection_Global.save()
     }
 
     def getAllFromMongo(def selectedDomains){
-        selectedDomains = selectedDomains?:getAllDomains()-['ObjectStorage']
-        def listOfObjectStorages = ObjectStorage.withCriteria {
+        selectedDomains = selectedDomains?:getAllDomains()-['Collection_Global']
+        def listOfCollection_Globals = Collection_Global.withCriteria {
             'in'("domainName",selectedDomains)
         }
         JSONObject responseObject = new JSONObject()
         for(def dom : selectedDomains) {
             JSONArray innerArray = new JSONArray()
-            for (int i = 0; i < listOfObjectStorages.size(); i++) {
-                if(listOfObjectStorages[i].dbo.get("domainName").equals(dom)) {
-                    innerArray.put(listOfObjectStorages[i].dbo.get("dataJsonValues"))
+            for (int i = 0; i < listOfCollection_Globals.size(); i++) {
+                if(listOfCollection_Globals[i].dbo.get("domainName").equals(dom)) {
+                    innerArray.put(listOfCollection_Globals[i].dbo.get("dataJsonValues"))
                 }
             }
             responseObject.put(dom,innerArray)
