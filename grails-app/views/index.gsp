@@ -34,14 +34,16 @@
 			<a class="btn-floating btn-lg grey lighten-1 mt-0 float-left">
 				<i class="fas fa-paperclip" aria-hidden="true"></i>
 				<input type="file" name="jsonfile">
-				<div class="message_error">
-					<g:if test="${flash.message}">
-						${flash.message}
-					</g:if>
-				</div>
+
 			</a>
 		</div>
 		<button type="submit" class="custom-button submit">Import to mysql</button>
+		<br><br>
+		<div class="message_error">
+			<g:if test="${flash.message}">
+				${flash.message}
+			</g:if>
+		</div>
 	</g:form>
 
 	</div>

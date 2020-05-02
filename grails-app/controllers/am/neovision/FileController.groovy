@@ -1,5 +1,7 @@
 package am.neovision
 
+import com.google.gson.JsonSyntaxException
+import com.google.gson.stream.MalformedJsonException
 import groovy.json.JsonBuilder
 import org.apache.commons.io.FileUtils
 import org.codehaus.groovy.grails.web.json.JSONException
@@ -33,8 +35,14 @@ class FileController {
             }
         }catch(JSONException e){
             flash.message = message(code: "file.invalid.json", status: HttpStatus.BAD_REQUEST)
-        } catch(NullPointerException e){
+        }catch(JsonSyntaxException e){
+            flash.message =  message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
+        }catch(NullPointerException e){
             flash.message = message(code: "file.invalid.domain", status: HttpStatus.BAD_REQUEST)
+        }catch(IOException e){
+            flash.message = flash.message =  message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
+        }catch(Exception e){
+            flash.message = flash.message =  message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
         } finally {
             redirect view: '../index'
         }

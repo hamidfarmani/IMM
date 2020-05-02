@@ -3,6 +3,8 @@ package am.neovision
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.JsonSyntaxException
+import com.google.gson.stream.MalformedJsonException
 import grails.transaction.Transactional
 import org.codehaus.groovy.grails.web.json.JSONArray
 import org.codehaus.groovy.grails.web.json.JSONException
@@ -40,9 +42,18 @@ class FileService {
         }catch(JSONException e) {
             println(e.getMessage())
             throw new JSONException(e)
+        }catch(JsonSyntaxException e){
+            println e.getMessage()
+            throw new JsonSyntaxException(e)
         }catch(NullPointerException e) {
             println(e.getMessage())
-            throw new NullPointerException()
+            throw new NullPointerException(e)
+        }catch(IOException e){
+            println e.getMessage()
+            throw new IOException(e)
+        }catch(Exception e){
+            println e.getMessage()
+            throw new Exception(e)
         }
     }
 

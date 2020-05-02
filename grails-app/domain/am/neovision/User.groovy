@@ -15,7 +15,7 @@ class User {
 
     static constraints = {
         fullname()
-        height()
+        height(nullable: true)
         numberOfChild()
         roles(nullable: true)
         address(nullable: true)
