@@ -76,6 +76,12 @@ section{
 /*===========================
         Messages
 =============================*/
+.message_info{
+    color: forestgreen;
+    font-family: Raleway;
+    font-size: small;
+}
+
 .message_error{
     color: red;
     font-family: Raleway;

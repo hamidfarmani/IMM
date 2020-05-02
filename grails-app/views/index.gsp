@@ -39,9 +39,13 @@
 		</div>
 		<button type="submit" class="custom-button submit">Import to mysql</button>
 		<br><br>
-		<div class="message_error">
+
+		<div>
 			<g:if test="${flash.message}">
-				${flash.message}
+				<div class="message_info" role="status">${flash.message}</div>
+			</g:if>
+			<g:if test="${flash.warning}">
+				<div class="message_error">${flash.warning}</div>
 			</g:if>
 		</div>
 	</g:form>

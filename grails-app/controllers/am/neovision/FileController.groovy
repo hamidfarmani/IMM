@@ -35,9 +35,9 @@ class FileController {
         def input = request.getFile("jsonfile").inputStream.text
         try {
             if (input == "") {
-                flash.message = message(code: "file.empty", status: HttpStatus.BAD_REQUEST)
+                flash.warning = message(code: "file.empty", status: HttpStatus.BAD_REQUEST)
             } else if (request.getFile("jsonfile").contentType != "application/json") {
-                flash.message = message(code: "file.invalid.format", status: HttpStatus.BAD_REQUEST)
+                flash.warning = message(code: "file.invalid.format", status: HttpStatus.BAD_REQUEST)
             } else {
                 if (input != "") {
                     fileService.saveInMySQL(input)
@@ -45,15 +45,15 @@ class FileController {
                 }
             }
         }catch(JSONException e){
-            flash.message = message(code: "file.invalid.json", status: HttpStatus.BAD_REQUEST)
+            flash.warning = message(code: "file.invalid.json", status: HttpStatus.BAD_REQUEST)
         }catch(JsonSyntaxException e){
-            flash.message =  message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
+            flash.warning =  message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
         }catch(NullPointerException e){
-            flash.message = message(code: "file.invalid.domain", status: HttpStatus.BAD_REQUEST)
+            flash.warning = message(code: "file.invalid.domain", status: HttpStatus.BAD_REQUEST)
         }catch(IOException e){
-            flash.message = message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
+            flash.warning = message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
         }catch(Exception e){
-            flash.message = message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
+            flash.warning = message(message:e.getMessage(),status: HttpStatus.BAD_REQUEST)
         } finally {
             redirect view: '../index'
         }
